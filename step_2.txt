@@ -89,11 +89,53 @@ It doesn’t contain the food (data),
 But tells you what’s inside and how to use it. 🏷️
 
 Q -> what is exception.py,logger.py,utils.py and pipeline which contains test_pipeline,train_pipeline.py 
+it's there in that .py file 
 
 Q -> what does () mean and why does it show error if () not given for eg in getcwd()
+Why () are Required
+To Execute the Function
+
+getcwd ➔ Refers to the function object itself (like a recipe).
+
+getcwd() ➔ Runs the function and returns its output (like cooking the recipe)
+
+Key Takeaway
+Use () when you want to run the function and get its result.
+
+Skip () when you want to refer to the function itself (not execute it).
+
 
 Q -> logging.basicConfig(
     filename=LOG_FILE_PATH,
     format="[ %(asctime)s ] %(lineno)d - %(levelname)s - %(message)s",
-    level=logging.INFO # ?
+    level=logging.INFO 
 )
+1. filename=LOG_FILE_PATH
+What it does:
+Specifies the file where log messages will be written.
+
+Example:
+If LOG_FILE_PATH = "app.log", all logs will be saved to app.log instead of being printed to the console.
+
+If omitted: Logs are printed to the terminal (console) by default.
+
+2. format="[ %(asctime)s ] %(lineno)d - %(levelname)s - %(message)s"
+Defines the structure of each log message. Let’s decode the placeholders:
+
+Placeholder	Meaning
+%(asctime)s	Timestamp when the log was created (e.g., 2023-10-05 14:30:45,123).
+%(lineno)d	Line number in the code where the logging call was made (e.g., 42).
+%(levelname)s	Log level (e.g., INFO, WARNING, ERROR).
+%(message)s	The actual log message (e.g., Failed to connect to database).
+Example Output:
+[ 2023-10-05 14:30:45,123 ] 42 - INFO - User logged in successfully.
+
+3. level=logging.INFO
+What it does:
+Sets the minimum log level to capture. Messages with this level or higher will be logged.
+
+Level Hierarchy:
+DEBUG < INFO < WARNING < ERROR < CRITICAL.
+
+Why INFO?:
+Only logs marked as INFO, WARNING, ERROR, or CRITICAL will be recorded. DEBUG messages are ignored.
