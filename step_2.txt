@@ -33,3 +33,67 @@ mypackage/
   __init__.py    ← Makes this a package
   module1.py
   module2.py
+
+components are like all the modules like data_ingestion, data_transformation
+
+data_ingestion means reading adata from a database
+data_transformation means understanding the data or transforming it
+
+Q -> What is Meta Data
+
+Metadata is "data about data." It’s information that describes other data to make it easier to organize, find, understand, or use. Think of it like a label on a filing cabinet that tells you what’s inside without needing to open every drawer.
+
+Examples of Metadata
+Context	Example of Metadata
+A Photo	Date taken, camera model, file size, location (GPS coordinates).
+A Book	Title, author, ISBN number, publication date, genre.
+A Music File	Song title, artist, album, track length, release year.
+Software Packages	Name, version, author, dependencies (like requests==2.26.0 in setup.py).
+Database	Column names, data types, table relationships.
+Website	Page title, keywords (for SEO), author, creation date.
+Why Metadata Matters
+Organization
+
+Helps categorize and sort data (e.g., sorting photos by date).
+
+Automation
+
+Software uses metadata to work "smarter" (e.g., pip reads package metadata to install dependencies).
+
+Understanding
+
+Explains what the data is, how it was created, and who owns it.
+
+Interoperability
+
+Systems use metadata to share data correctly (e.g., a CSV file’s column headers).
+
+Real-World Software Example
+In Python packaging:
+
+setup.py or pyproject.toml contains metadata like:
+
+setup(
+    name="myapp",
+    version="1.0.0",
+    author="Alice",
+    install_requires=["requests"],  # Dependencies
+)
+egg-info/dist-info folders store compiled metadata for tools like pip to read.
+
+Key Takeaway
+Metadata is like the nutrition label on food:
+
+It doesn’t contain the food (data),
+
+But tells you what’s inside and how to use it. 🏷️
+
+Q -> what is exception.py,logger.py,utils.py and pipeline which contains test_pipeline,train_pipeline.py 
+
+Q -> what does () mean and why does it show error if () not given for eg in getcwd()
+
+Q -> logging.basicConfig(
+    filename=LOG_FILE_PATH,
+    format="[ %(asctime)s ] %(lineno)d - %(levelname)s - %(message)s",
+    level=logging.INFO # ?
+)
