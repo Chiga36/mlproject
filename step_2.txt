@@ -1,0 +1,35 @@
+src everything will be coming
+in components we do __init__.py so that we can export this as a package
+
+Q -> what do we mean by __init__.py
+
+Key Takeaways:
+Required for traditional packages: Ensures Python treats the directory as a package.
+
+Optional but useful: Initialize code, simplify imports, and define public APIs.
+
+Empty __init__.py is valid: Just marks the directory as a package.
+
+Example directory structure:
+
+Copy
+mypackage/
+├── __init__.py     ← Required for package behavior
+├── module1.py
+└── module2.py
+Without __init__.py, you can’t import modules like import mypackage.module1.
+With it, you can organize code cleanly and control user-facing interfaces.
+
+he __init__.py file in Python serves several key purposes:
+
+1. Package Identification
+What it does: Marks a directory as a Python package.
+
+Example:
+A folder named mypackage with __init__.py is treated as a package. Without it, Python sees it as a regular directory.
+
+Copy
+mypackage/
+  __init__.py    ← Makes this a package
+  module1.py
+  module2.py

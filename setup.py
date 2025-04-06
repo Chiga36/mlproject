@@ -1,4 +1,4 @@
-## responsibe to create ML application as a package -> deploy in py py -> anybpdy can use it
+## responsibe to create ML application as a package -> deploy in py py -> anybody can use it
 from setuptools import find_packages,setup
 from typing import List
 
