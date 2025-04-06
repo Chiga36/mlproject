@@ -1,0 +1,2 @@
+logs folder contains every log from exception to logger
+
