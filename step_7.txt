@@ -1,0 +1,5 @@
+Q -> what is verbose
+
+Q -> "Catboosting":CatBoostClassifier(verbose=False),
+
+Q -> model.set_params(**gs.best_params_)
