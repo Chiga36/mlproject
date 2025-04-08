@@ -45,6 +45,8 @@ class ModelTrainer:
                 "AdaBoost Regressor":AdaBoostRegressor(),
             }
 
+            ## Comment indicates that if u have a grest gpu then run uncomment it and then run
+
             params = {
                 "Decision Tree":{
                     "criterion":["squared_error","friedman_mse","absolute_error","poisson"],
@@ -85,7 +87,8 @@ class ModelTrainer:
                     # "loss" :["linear","square","exponential"],
                 },
             }
-            model_report:dict = evaluate_models(x_train=x_train,y_train=y_train,x_test=x_test,y_test=y_test,models=models,params=params)
+            model_report:dict = evaluate_models(x_train=x_train,y_train=y_train,x_test=x_test,y_test=y_test,models=models,params=None)
+            # If u have a good gpu then in params = None replace it by params = params
 
             # to get best model score from dict 
             best_model_score = max(sorted(model_report.values()))

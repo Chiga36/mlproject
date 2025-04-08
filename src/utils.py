@@ -25,17 +25,20 @@ def save_object(file_path,obj):
     ## This wil go to data_transformation.py
 
 def evaluate_models(x_train,y_train,x_test,y_test,models,params):
+# def evaluate_models(x_train,y_train,x_test,y_test,models):
     try :
         report = {}
 
         for i in range(len(list(models))):
             model = list(models.values())[i]
-            para = params[list(models.keys())[i]]
 
-            gs = GridSearchCV(model,para,cv=3)
-            gs.fit(x_train,y_train)
+            # if u have a good GPU then comment out the 4 lines below and in model_trainer.py put params = params
+            # para = params[list(models.keys())[i]]
 
-            model.set_params(**gs.best_params_)
+            # gs = GridSearchCV(model,para,cv=3)
+            # gs.fit(x_train,y_train)
+
+            # model.set_params(**gs.best_params_)
             model.fit(x_train,y_train)
 
             y_train_predict = model.predict(x_train)
@@ -54,3 +57,13 @@ def evaluate_models(x_train,y_train,x_test,y_test,models,params):
         raise CustomException(sys,e)
     
     ## this will go to model_training.py
+
+
+## It will load the pickle file
+def load_object(file_path):
+    try:
+        with open(file_path,"rb") as file_obj:
+            return dill.load(file_obj)
+    
+    except Exception as e:
+        raise CustomException(e,sys)
