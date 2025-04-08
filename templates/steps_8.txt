@@ -1,1 +1,70 @@
-what i sget and post
+Q -> what i sget and post
+GET and POST are two fundamental HTTP request methods used for communication between clients (e.g., browsers) and servers. Here's a breakdown of their differences, use cases, and how they work:
+
+1. GET Request
+Purpose: Retrieve data from a server (e.g., load a webpage, fetch search results).
+
+Key Characteristics:
+
+Parameters are sent in the URL (visible in the address bar).
+Example: https://example.com/search?query=catboost
+
+Limited data size (URL length restrictions, typically ~2048 characters).
+
+Idempotent: Repeated requests do not change server state (safe for reloading).
+
+Cached by browsers and servers (improves performance).
+
+Not secure for sensitive data (parameters are exposed in URLs/logs).
+
+When to Use:
+
+Fetching data (e.g., search results, loading a webpage).
+
+Bookmarkable links (since parameters are in the URL).
+
+Safe operations that don’t modify server data.
+
+Example:
+
+html
+Copy
+<!-- A simple GET form -->
+<form action="/search" method="GET">
+  <input type="text" name="query">
+  <button type="submit">Search</button>
+</form>
+Run HTML
+2. POST Request
+Purpose: Submit data to a server (e.g., send form data, upload files).
+
+Key Characteristics:
+
+Data is sent in the request body (not visible in the URL).
+
+No size limits (supports large files, e.g., images).
+
+Non-idempotent: Repeated requests may change server state (e.g., placing multiple orders).
+
+Not cached by default.
+
+More secure for sensitive data (e.g., passwords, credit card info).
+
+When to Use:
+
+Submitting forms (e.g., login, registration, payment).
+
+Uploading files.
+
+Actions that modify server data (e.g., creating/deleting records).
+
+Example:
+
+html
+Copy
+<!-- A simple POST form -->
+<form action="/login" method="POST">
+  <input type="email" name="email">
+  <input type="password" name="password">
+  <button type="submit">Login</button>
+</form>
