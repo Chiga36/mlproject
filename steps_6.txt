@@ -1,0 +1,66 @@
+Q -> what is the difference between fit and fit_transform
+1. fit()
+Purpose: Computes the parameters needed for a transformation (e.g., mean, standard deviation, or category mappings) but does not modify the data.
+
+When to Use: When you need to learn parameters from the training data to apply later to other datasets (e.g., test data).
+
+Example:
+
+python
+Copy
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+scaler.fit(X_train)  # Computes mean and std of X_train
+Result: The scaler now "knows" the mean (μ) and standard deviation (σ) of the training data.
+
+2. transform()
+Purpose: Applies the learned parameters (from fit()) to modify the data.
+
+When to Use: After calling fit() to apply the transformation to the same or new data.
+
+Example:
+
+python
+Copy
+X_train_scaled = scaler.transform(X_train)  # Scales X_train using μ and σ
+X_test_scaled = scaler.transform(X_test)    # Scales X_test using the same μ and σ
+Result: Transforms data to have zero mean and unit variance.
+
+3. fit_transform()
+Purpose: Combines fit() and transform() into a single step. It learns the parameters and applies the transformation to the same dataset.
+
+When to Use: On the training data to both learn parameters and transform it in one step.
+
+Example:
+
+python
+Copy
+X_train_scaled = scaler.fit_transform(X_train)  # Fit to X_train and transform it
+Result: Equivalent to scaler.fit(X_train).transform(X_train).
+
+Key Differences
+Aspect	fit()	transform()	fit_transform()
+Action	Learns parameters (no data change).	Applies learned parameters.	Learns + applies parameters.
+Use Case	Training data (to learn stats).	Training/test data (apply stats).	Training data (learn + apply).
+Data Leakage	Safe for training data.	Safe for test data.	Only for training data (using it on test data leaks information).
+Example Workflow
+python
+Copy
+from sklearn.preprocessing import StandardScaler
+
+# Training data: Fit and transform
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)  # fit_transform for training
+
+# Test data: Only transform (use the same scaler)
+X_test_scaled = scaler.transform(X_test)        # Never fit on test data!
+Why Not Use fit_transform Everywhere?
+Test Data: Using fit_transform on test data would recompute parameters (e.g., mean, variance) based on the test set, which leaks information about the test distribution into the model. This biases your model and inflates performance metrics.
+
+Summary
+Use fit() → transform() for training data if you need separate steps.
+
+Use fit_transform() for training data to combine steps.
+
+Never use fit() or fit_transform() on test data—always use transform() with parameters learned from the training data.
