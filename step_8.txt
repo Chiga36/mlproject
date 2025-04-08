@@ -1,0 +1,12 @@
+Q -> elastic beam staclk
+2 imp config we need to setup where we need to setup instance when we need to deploy 
+
+python.config will tell the EBS the starting point of application
+
+in app.py we did 
+application = Flask(__name__)
+app = application
+
+because application is used for deplyment
+
+even application.py is made for same purpose and debug=True has to be removed
