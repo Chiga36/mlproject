@@ -13,7 +13,6 @@ from src.components.model_trainer import ModelTrainerConfig,ModelTrainer
 # any input that is required for the data ingestion process this will hwlp us to define the class directly
 @dataclass # decorator 
 class DataIngestionConfig:
-    # ?
     train_data_path: str = os.path.join('artifacts', 'train.csv')
     # this will be the path as input
     # Output folder in artifact
