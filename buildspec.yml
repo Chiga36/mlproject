@@ -1,0 +1,35 @@
+version: 0.2
+
+env:
+  variables:
+    REPOSITORY_URI: 123456789012.dkr.ecr.us-east-1.amazonaws.com/studentper-repo
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR…
+      - aws --version
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
+  build:
+    commands:
+      - echo Build Docker image…
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker push $REPOSITORY_URI:latest
+  post_build:
+    commands:
+      - echo Generating Dockerrun.aws.json…
+      - |
+        cat > Dockerrun.aws.json <<EOF
+        {
+          "AWSEBDockerrunVersion": 2,
+          "Image": {
+            "Name": "$REPOSITORY_URI:latest",
+            "Update": "true"
+          },
+          "Ports": [{ "ContainerPort": "5000" }]
+        }
+        EOF
+
+artifacts:
+  files:
+    - Dockerrun.aws.json
